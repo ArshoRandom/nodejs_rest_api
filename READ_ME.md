@@ -18,7 +18,6 @@ Create .env file in user_blog package and set this properties
 
     SECRET=<your secret key for jwt auth>
 
-Make mongodb database and set url in 'application.properties'
 
 run ```npm init```
 
