@@ -156,11 +156,11 @@ Request body:
 }
 ```
 
-###Success Response:
+### Success Response:
 
     Code: 200
 
-###Error Response:
+### Error Response:
 
     Code: 422 
 
@@ -171,15 +171,15 @@ Request body:
 User must be authenticated
 Update existing post entity
 
-###URL
+### URL
 
     /api/v1/users/posts/:id
 
-###Method:
+### Method:
 
     PUT
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -199,11 +199,11 @@ title : "MyProject", text: "text",
 deletableImageId : "wwf4w987f4894wf4"               
 }
 ```
-###Success Response:
+### Success Response:
 
     Code: 200 
 
-###Error Response:
+### Error Response:
 
     Code: 422 
 
@@ -216,15 +216,15 @@ deletableImageId : "wwf4w987f4894wf4"
 User must be authenticated
 Delete existing post entity
 
-###URL
+### URL
 
     /api/v1/users/posts/:id
 
-###Method:
+### Method:
 
     DELETE
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -234,11 +234,11 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
-###Error Response:
+### Error Response:
 
     Code: 404 
 *****************************************************
@@ -248,15 +248,15 @@ Request body:
 User must be authenticated
 Delete existing user entity
 
-###URL
+### URL
 
     /api/v1/users
 
-###Method:
+### Method:
 
     DELETE
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -266,11 +266,11 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
-###Error Response:
+### Error Response:
 
     Code: 404 
 *****************************************************
@@ -280,15 +280,15 @@ Request body:
 User must be authenticated
 Update existing user entity
 
-###URL
+### URL
 
     /api/v1/users
 
-###Method:
+### Method:
 
     PUT
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -304,11 +304,11 @@ Request body:
 }
 ```
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
-###Error Response:
+### Error Response:
 
     Code: 404 
 
@@ -319,15 +319,15 @@ Request body:
 User must be authenticated
 Get user posts
 
-###URL
+### URL
 
     /api/v1/users/:uid/posts
 
-###Method:
+### Method:
 
     GET
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -337,7 +337,7 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
@@ -348,15 +348,15 @@ Request body:
 User must be authenticated
 Get user single post
 
-###URL
+### URL
 
     /api/v1/users/:uid/posts/:id
 
-###Method:
+### Method:
 
     GET
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -367,7 +367,7 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
@@ -378,15 +378,15 @@ Request body:
 User must be authenticated
 Get user single post
 
-###URL
+### URL
 
     /api/v1/users/posts/:id
 
-###Method:
+### Method:
 
     GET
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -396,7 +396,7 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
@@ -414,15 +414,15 @@ Response body:
 
 Get user single user
 
-###URL
+### URL
 
     /api/v1/users/:id
 
-###Method:
+### Method:
 
     GET
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -432,11 +432,11 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
-###Error Response:
+### Error Response:
 
     Code: 404 
 
@@ -456,15 +456,15 @@ Response body:
 
 Get all posts
 
-###URL
+### URL
 
     /api/v1/posts
 
-###Method:
+### Method:
 
     GET
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -474,11 +474,11 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
-###Error Response:
+### Error Response:
 
     Code: 404 
 
@@ -499,15 +499,15 @@ Response body:
 
 Get single post
 
-###URL
+### URL
 
     /api/v1/posts/:id
 
-###Method:
+### Method:
 
     GET
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -517,11 +517,11 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
-###Error Response:
+### Error Response:
 
     Code: 404 
 
@@ -543,11 +543,11 @@ Search posts
 
     /api/v1/posts/search/:token
 
-###Method:
+### Method:
 
     GET
 
-###URL Params
+### URL Params
 
 Required:
 
@@ -557,11 +557,11 @@ Request body:
 
     None
 
-###Success Response:
+### Success Response:
 
     Code: 200 
 
-###Error Response:
+### Error Response:
 
     None
 
