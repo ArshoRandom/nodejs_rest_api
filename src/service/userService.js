@@ -48,4 +48,10 @@ module.exports.deleteById = async id => {
     await postService.deleteAllByCreatorId(id);
 }
 
+module.exports.search = async (chunk) => {
+    let results = await promisify(dao.findByChunk)(chunk);
+    return results.map(await formatUtil.formatUserEntity)
+}
+
+
 

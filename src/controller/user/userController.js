@@ -27,3 +27,17 @@ module.exports.deleteUser = (req, res) => {
         .catch(err => handleError(res,err,404))
 }
 
+module.exports.searchByChunk = (req, res) => {
+
+    let chunk = req.params.token;
+    if (!chunk || chunk.trim().length === 0) {
+        handleError(res,new Error('Empty search chunk'),400)
+    }else {
+        userService.search(chunk)
+            .then(async promises => {
+                let results = await Promise.all(promises)
+                res.status(200).send(results);
+            })
+            .catch(err => handleError(res, err))
+    }
+}

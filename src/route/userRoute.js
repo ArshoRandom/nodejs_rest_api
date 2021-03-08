@@ -7,7 +7,9 @@ function _authenticate(){
     return passport.authenticate('jwt',{session:false});
 }
 
-route.get('/:id', userController.getById)
+route
+    .get('/:id', userController.getById)
+    .get('/search/:token', _authenticate(),userController.searchByChunk)
 
     .get('/:uid/posts',_authenticate(),postController.getAllPostsByUserId)
     .get('/:uid/posts/:id',_authenticate(),postController.getByIdAndUserId)

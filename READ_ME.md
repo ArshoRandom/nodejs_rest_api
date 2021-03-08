@@ -575,3 +575,47 @@ Response body:
     ]
 }
 ```
+************************************************************
+
+## Search user
+
+User must be authenticated
+Search other users
+
+###URL
+
+    /api/v1/users/search/:token
+
+### Method:
+
+    GET
+
+### URL Params
+
+Required:
+
+    token=[string]
+
+Request body:
+
+    None
+
+### Success Response:
+
+    Code: 200 
+
+### Error Response:
+
+    None
+
+Response body:
+```JavaScript
+[
+    {
+        "name": "Arshak",
+        "surname": "Papoyan",
+        "email": "pap@gmail.com",
+        "posts": []
+    }
+]
+```

@@ -36,3 +36,9 @@ module.exports.deleteById = (id, action) => {
     });
 }
 
+module.exports.findByChunk = (chunk,action) => {
+    let regExp = new RegExp(`^${chunk}`,'i');
+    return User.aggregate([{$match: {name: regExp}}], (err, res) => {
+        action(err, res)
+    })
+}
