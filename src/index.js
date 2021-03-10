@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const passport = require('passport');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const {logger} = require('./util/logger');
@@ -11,8 +10,6 @@ const postRoute = require('./route/postRoute').route;
 const app = express();
 
 app.use(logger)
-app.use(passport.initialize());
-require('./middlewear/passport').passport(passport);
 
 app.use(fileUpload())
 

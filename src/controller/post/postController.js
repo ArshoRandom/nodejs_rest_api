@@ -1,5 +1,5 @@
 const postService = require('../../service/postService');
-const jwtUtil = require('../../util/jwtUtil');
+const jwtUtil = require('../../util/authUtil');
 const formatUtil = require('../../util/formatUtil');
 const handleError = require('../../util/errorHandler').handler;
 
@@ -14,7 +14,7 @@ exports.getAll = async (req, res) => {
 
 exports.getAllByCreatorId = async (req, res) => {
     try{
-        let currentUserId = jwtUtil.getPayloadFromRequest(req).userId
+        let currentUserId = req.authUserId;
         let result = await postService.getAllByCreatorId(currentUserId);
         res.status(200).send(result);
     }catch (err){
@@ -35,7 +35,7 @@ exports.addPost = async (req, res) => {
     try{
         let data = req.body;
         let files = req.files;
-        data.creatorId = jwtUtil.getPayloadFromRequest(req).userId
+        data.creatorId = req.authUserId
         if (files) {
             data.images =formatUtil.formatFileEntity(files.images)
         }
@@ -50,7 +50,7 @@ exports.updatePostById = async (req, res) => {
     try{
         let data = req.body;
         let files = req.files;
-        let currentUserId = jwtUtil.getPayloadFromRequest(req).userId;
+        let currentUserId = req.authUserId
         if (files) {
             data.images = formatUtil.formatFileEntity(files.images)
         }
@@ -63,7 +63,7 @@ exports.updatePostById = async (req, res) => {
 
 exports.deletePostById = async (req, res) => {
     try{
-        let currentUserId = jwtUtil.getPayloadFromRequest(req).userId
+        let currentUserId = req.authUserId;
         let result = await postService.deletePostByIdAndCreatorId(req.params.id, currentUserId);
         result ? res.status(200).send(`Deleted post with id = ${req.params.id}`) : res.status(404).send(`Post not found id = ${req.params.id}`)
     }catch (err){

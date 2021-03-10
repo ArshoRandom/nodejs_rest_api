@@ -1,5 +1,4 @@
 const userService = require('../../service/userService')
-const jwtUtil = require('../../util/jwtUtil')
 const handleError = require('../../util/errorHandler').handler;
 
 exports.getById = async (req, res) => {
@@ -13,8 +12,8 @@ exports.getById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
-        let decoded = jwtUtil.getPayloadFromRequest(req)
-        let result = await userService.updateById(decoded.userId, req.body);
+        let currentUserId = req.authUserId;
+        let result = await userService.updateById(currentUserId, req.body);
         res.status(200).send(result)
     } catch (err) {
         handleError(res, err, 422);
@@ -23,9 +22,9 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
-        let decoded = jwtUtil.getPayloadFromRequest(req)
-        await userService.deleteById(decoded.userId);
-        res.status(200).send(`Successfully deleted user with id = ${decoded.userId}`);
+        let currentUserId = req.authUserId;
+        await userService.deleteById(currentUserId);
+        res.status(200).send(`Successfully deleted user with id = ${currentUserId}`);
     } catch (err) {
         handleError(res, err, 404);
     }
