@@ -7,7 +7,7 @@ function _authenticate(){
     return passport.authenticate('jwt',{session:false});
 }
 
-route
+module.exports = route
     .get('/:id', userController.getById)
     .get('/search/:token', _authenticate(),userController.searchByChunk)
 
@@ -22,5 +22,3 @@ route
     .put('/',_authenticate(),userController.updateUser)
     .delete('/',_authenticate(),userController.deleteUser)
 
-
-module.exports = route;

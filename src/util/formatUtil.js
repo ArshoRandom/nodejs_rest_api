@@ -1,11 +1,13 @@
 const postService = require('../service/postService')
 
 module.exports.formatImageData = images => {
-    return images.map(e => {
-        e.name = `${e.name}.${e.mimetype.split('/')[1]}`;
-        e.content = `data:${e.mimetype};base64,${Buffer.from(e.content).toString("base64")}`;
-        return e;
-    })
+    if (images) {
+        return images.map(e => {
+            e.name = `${e.name}.${e.mimetype.split('/')[1]}`;
+            e.content = `data:${e.mimetype};base64,${Buffer.from(e.content).toString("base64")}`;
+            return e;
+        })
+    }
 }
 
 module.exports.formatFileEntity = files => {
