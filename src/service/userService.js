@@ -4,25 +4,25 @@ const {encode} = require('../util/passwordUtil');
 const formatUtil = require('../util/formatUtil');
 const postService = require('./postService');
 
-module.exports.addUser = async userDetails => {
+exports.addUser = async userDetails => {
     userDetails.password = encode(userDetails.password);
     return (await dao.save(userDetails))._id;
 }
 
-module.exports.getUserByEmail = async email => {
+exports.getUserByEmail = async email => {
     return await promisify(dao.findByEmail)(email);
 }
 
-module.exports.checkUser = async email => {
+exports.checkUser = async email => {
     return await dao.existsByEmail(email);
 }
 
-module.exports.getUserById = async id => {
+exports.getUserById = async id => {
     let data = dao.findById(id).exec();
     return await formatUtil.formatUserEntity(data);
 }
 
-module.exports.updateById = async (id, data) => {
+exports.updateById = async (id, data) => {
     for (const dataKey in data) {
         if (dataKey !== 'password' && dataKey !== 'name' && dataKey !== 'surname') {
             throw new Error('Invalid format')
@@ -43,12 +43,12 @@ module.exports.updateById = async (id, data) => {
     }
 }
 
-module.exports.deleteById = async id => {
+exports.deleteById = async id => {
     await promisify(dao.deleteById)(id);
     await postService.deleteAllByCreatorId(id);
 }
 
-module.exports.search = async (chunk) => {
+exports.search = async (chunk) => {
     let results = await promisify(dao.findByChunk)(chunk);
     return results.map(await formatUtil.formatUserEntity)
 }

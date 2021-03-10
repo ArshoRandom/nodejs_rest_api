@@ -1,8 +1,8 @@
 const userService = require('../../service/userService')
 const jwtUtil = require('../../util/jwtUtil')
-const handleError = require('../../util/errorHandler');
+const handleError = require('../../util/errorHandler').handler;
 
-module.exports.getById = async (req, res) => {
+exports.getById = async (req, res) => {
     try {
         let result = await userService.getUserById(req.params.id);
         res.status(200).send(result);
@@ -11,7 +11,7 @@ module.exports.getById = async (req, res) => {
     }
 }
 
-module.exports.updateUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
     try {
         let decoded = jwtUtil.getPayloadFromRequest(req)
         let result = await userService.updateById(decoded.userId, req.body);
@@ -21,7 +21,7 @@ module.exports.updateUser = async (req, res) => {
     }
 }
 
-module.exports.deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res) => {
     try {
         let decoded = jwtUtil.getPayloadFromRequest(req)
         await userService.deleteById(decoded.userId);
@@ -31,7 +31,7 @@ module.exports.deleteUser = async (req, res) => {
     }
 }
 
-module.exports.searchByChunk = async (req, res) => {
+exports.searchByChunk = async (req, res) => {
     let chunk = req.params.token;
     if (!chunk || chunk.trim().length === 0) {
         handleError(res, new Error('Empty search chunk'), 400)

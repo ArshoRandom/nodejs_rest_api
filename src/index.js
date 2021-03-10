@@ -4,15 +4,15 @@ const passport = require('passport');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const {logger} = require('./util/logger');
-const userRoute = require('./route/userRoute');
-const authRoute = require('./route/authRoute');
-const postRoute = require('./route/postRoute');
+const userRoute = require('./route/userRoute').route;
+const authRoute = require('./route/authRoute').route;
+const postRoute = require('./route/postRoute').route;
 
 const app = express();
 
 app.use(logger)
 app.use(passport.initialize());
-require('./middlewear/passport')(passport);
+require('./middlewear/passport').passport(passport);
 
 app.use(fileUpload())
 

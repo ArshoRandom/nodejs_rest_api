@@ -1,9 +1,9 @@
 const postService = require('../../service/postService');
 const jwtUtil = require('../../util/jwtUtil');
 const formatUtil = require('../../util/formatUtil');
-const handleError = require('../../util/errorHandler');
+const handleError = require('../../util/errorHandler').handler;
 
-module.exports.getAll = async (req, res) => {
+exports.getAll = async (req, res) => {
     try{
         let result = await postService.getAll();
         res.status(200).send(result);
@@ -12,7 +12,7 @@ module.exports.getAll = async (req, res) => {
     }
 }
 
-module.exports.getAllByCreatorId = async (req, res) => {
+exports.getAllByCreatorId = async (req, res) => {
     try{
         let currentUserId = jwtUtil.getPayloadFromRequest(req).userId
         let result = await postService.getAllByCreatorId(currentUserId);
@@ -22,7 +22,7 @@ module.exports.getAllByCreatorId = async (req, res) => {
     }
 }
 
-module.exports.getById = async (req, res) => {
+exports.getById = async (req, res) => {
     try{
         let result = await postService.getById(req.params.id);
         result ? res.status(200).send(result) : res.status(404).send(`Post with id = ${req.params.id} not found`);
@@ -31,7 +31,7 @@ module.exports.getById = async (req, res) => {
     }
 }
 
-module.exports.addPost = async (req, res) => {
+exports.addPost = async (req, res) => {
     try{
         let data = req.body;
         let files = req.files;
@@ -46,7 +46,7 @@ module.exports.addPost = async (req, res) => {
     }
 }
 
-module.exports.updatePostById = async (req, res) => {
+exports.updatePostById = async (req, res) => {
     try{
         let data = req.body;
         let files = req.files;
@@ -61,7 +61,7 @@ module.exports.updatePostById = async (req, res) => {
     }
 }
 
-module.exports.deletePostById = async (req, res) => {
+exports.deletePostById = async (req, res) => {
     try{
         let currentUserId = jwtUtil.getPayloadFromRequest(req).userId
         let result = await postService.deletePostByIdAndCreatorId(req.params.id, currentUserId);
@@ -71,7 +71,7 @@ module.exports.deletePostById = async (req, res) => {
     }
 }
 
-module.exports.getAllPostsByUserId = async (req, res) => {
+exports.getAllPostsByUserId = async (req, res) => {
     try{
         let result = await postService.getAllByCreatorId(req.params.uid);
         res.status(200).send(result);
@@ -80,7 +80,7 @@ module.exports.getAllPostsByUserId = async (req, res) => {
     }
 }
 
-module.exports.getByIdAndUserId = async (req, res) => {
+exports.getByIdAndUserId = async (req, res) => {
     try{
         let result = await postService.getByIdAndCreatorId(req.params.id, req.params.uid);
         result ? res.status(200).send(result) : res.status(404).send(`Post with id = ${req.params.id} not found`);
@@ -89,7 +89,7 @@ module.exports.getByIdAndUserId = async (req, res) => {
     }
 }
 
-module.exports.searchByChunk = async (req,res) => {
+exports.searchByChunk = async (req,res) => {
     let chunk = req.params.token;
     if (!chunk || chunk.trim().length === 0) {
        handleError(res,new Error('Empty search chunk'),400)

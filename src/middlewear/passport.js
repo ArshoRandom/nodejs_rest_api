@@ -7,7 +7,7 @@ const options = {
     secretOrKey: process.env.SECRET
 }
 
-module.exports = passport => {
+exports.passport = passport => {
     passport.use(
         new JwtStrategy(options, async (payload, done) => {
             try {

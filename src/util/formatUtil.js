@@ -1,6 +1,6 @@
 const postService = require('../service/postService')
 
-module.exports.formatImageData = images => {
+exports.formatImageData = images => {
     if (images) {
         return images.map(e => {
             e.name = `${e.name}.${e.mimetype.split('/')[1]}`;
@@ -10,7 +10,7 @@ module.exports.formatImageData = images => {
     }
 }
 
-module.exports.formatFileEntity = files => {
+exports.formatFileEntity = files => {
     let entities = [];
     if (files.length) {
         entities = files.map(item => {
@@ -30,7 +30,7 @@ module.exports.formatFileEntity = files => {
     return entities;
 }
 
-module.exports.formatPostEntity = entity => {
+exports.formatPostEntity = entity => {
     let post = {};
     post.id = entity._id;
     post.title = entity.title;
@@ -43,7 +43,7 @@ module.exports.formatPostEntity = entity => {
     return post
 }
 
-module.exports.formatUserEntity = async entity => {
+exports.formatUserEntity = async entity => {
     let user = {};
     let userPosts = await postService.getAllByCreatorId(entity._id)
     user.name = entity.name;

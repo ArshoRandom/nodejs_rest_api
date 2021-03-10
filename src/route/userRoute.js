@@ -7,7 +7,7 @@ function _authenticate(){
     return passport.authenticate('jwt',{session:false});
 }
 
-module.exports = route
+exports.route = route
     .get('/:id', userController.getById)
     .get('/search/:token', _authenticate(),userController.searchByChunk)
 

@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const service = require('../../service/userService');
 const {compare} = require('../../util/passwordUtil');
-const handleError = require('../../util/errorHandler');
+const handleError = require('../../util/errorHandler').handler;
 
-module.exports.login = async (req, res) => {
+exports.login = async (req, res) => {
     try {
         const user = await service.getUserByEmail(req.body.email);
         if (!user) {
@@ -24,7 +24,7 @@ module.exports.login = async (req, res) => {
     }
 }
 
-module.exports.register = async (req, res) => {
+exports.register = async (req, res) => {
     try {
         let exists = await service.checkUser(req.body.email);
         if (!exists) {

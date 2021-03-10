@@ -1,6 +1,6 @@
 const User = require('../model/user').User;
 
-module.exports.save = userDetails => {
+exports.save = userDetails => {
     let user = new User({
         name: userDetails.name,
         surname: userDetails.surname,
@@ -10,33 +10,33 @@ module.exports.save = userDetails => {
     return user.save();
 }
 
-module.exports.findByEmail = (email, action) => {
+exports.findByEmail = (email, action) => {
     User.findOne({email: email},  (err, res) => {
         action(err, res)
     })
 }
 
-module.exports.existsByEmail = email => {
+exports.existsByEmail = email => {
     return User.exists({email: email});
 }
 
-module.exports.findById = id => {
+exports.findById = id => {
     return User.findById(id);
 }
 
-module.exports.updateById = (id, data,action) => {
+exports.updateById = (id, data,action) => {
     User.findByIdAndUpdate({_id:id}, data, {upsert: true}, (err, doc) => {
         action(err,doc)
     });
 }
 
-module.exports.deleteById = (id, action) => {
+exports.deleteById = (id, action) => {
     User.findByIdAndDelete(id,   {},(err, doc) => {
         action(err,doc)
     });
 }
 
-module.exports.findByChunk = (chunk,action) => {
+exports.findByChunk = (chunk,action) => {
     let regExp = new RegExp(`^${chunk}`,'i');
     return User.aggregate([{$match: {name: regExp}}], (err, res) => {
         action(err, res)

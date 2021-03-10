@@ -1,7 +1,7 @@
 const morgan = require('morgan');
 const chalk = require('chalk');
 
-module.exports.logger = morgan( (tokens, req, res) => {
+exports.logger = morgan( (tokens, req, res) => {
     return [
         chalk.green.bold(tokens.method(req, res)),
         chalk.red.bold(tokens.status(req, res)),
